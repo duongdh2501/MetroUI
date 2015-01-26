@@ -1,0 +1,97 @@
+<header>
+    <script>
+        try {
+            if (typeof (Storage) !== "undefined") {
+                if (localStorage.username) {
+                    document.getElementById("tendangnhap").innerHTML = localStorage.username;
+                    document.getElementById("chucvu").innerHTML = localStorage.sChucVu;
+                    document.getElementById('inbox-text1').innerHTML = 'Đăng xuất';
+                }
+            }
+        }
+        catch (ex) {
+            document.getElementById("tendangnhap").innerHTML = "unknow";
+        }
+        //topbar pageTitle
+        if (document.getElementsByTagName("title")[0].innerHTML == "Tiến độ dự án") {
+            document.getElementById("pageTitle").innerHTML = "CPM Tiến độ dự án";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Báo cáo tình hình thực hiện") {
+            document.getElementById("pageTitle").innerHTML = "CPM Báo cáo tình hình thực hiện";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Báo cáo tổng hợp") {
+            document.getElementById("pageTitle").innerHTML = "CPM Báo cáo tổng hợp";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Phân quyền dự án") {
+            document.getElementById("pageTitle").innerHTML = "CPM Phân quyền dự án";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Phân quyền công việc") {
+            document.getElementById("pageTitle").innerHTML = "CPM Phân quyền công việc";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Đăng ký mã") {
+            document.getElementById("pageTitle").innerHTML = "CPM Đăng ký mã";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Cơ cấu tổ chức") {
+            document.getElementById("pageTitle").innerHTML = "CPM Cơ cấu tổ chức";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Bàn làm việc") {
+            document.getElementById("pageTitle").innerHTML = "CPM Bàn làm việc";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Lịch làm việc") {
+            document.getElementById("pageTitle").innerHTML = "CPM Lịch làm việc";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Thông tin công việc") {
+            document.getElementById("pageTitle").innerHTML = "CPM Thông tin công việc";
+        } else if (document.getElementsByTagName("title")[0].innerHTML == "Trang chủ") {
+            document.getElementById("pageTitle").innerHTML = "CPM Trang chủ";
+            $('#homeButton').removeClass("icon-metro-menu").click(false);
+            $("#headerWrapper").css({position: "fixed"});
+            var strDevice = navigator.userAgent;
+            if (strDevice.toLowerCase().search("mobile") != -1) { //check if device is moblie or not: not mobile
+                $('.user-id-info').css({display: "none"});
+                $('.user-id-image').css({marginLeft: "0px"});
+            }
+        }
+        if (localStorage.sQuyenHan > 2) {
+            var dis = document.getElementById("homeButton");
+            dis.parentNode.removeChild(dis);
+        }
+        function redirectHome() {
+            document.getElementById('homeButton').href = 'Home.html';
+        }
+    </script>
+    <div id="headerWrapper">
+        <div id="headerCenter">
+
+            <div id="headerTitles">
+                <img src='img/logo-smartCPM-small.png' id="headerLogo"/>
+                <div><a href="#" id="homePageTitle">SmartCPM.Net</a></div>
+                <div><a href="#" id="pageTitle"></a></div>
+            </div>
+
+            <!--user acc-->
+            <div class="user-id" onclick="accountClick();">
+                <div class="user-id-image"><span class="icon-user" style="font-size: 30px; margin-top: 5px;"></span>
+                </div>
+                <div class="user-id-info">
+                    <span class="user-name" id="tendangnhap">Tên đăng nhập</span>
+                    <span class="user-title" id="chucvu">Chức vụ</span>
+                </div>
+
+                <div id="loginBox" class="loginBox">
+                    <form class="loginForm">
+                        <div class="inbox-user-action" id="iusera1" onclick="QuanLyTaiKhoan();">
+                            <div class="inbox-user-id-image">
+                                <span class="icon-wrench"
+                                      style="font-size: 30px; margin-top: 5px; color: #ffffff;"></span>
+                            </div>
+                            <div class="inbox-user-action-text">Quản lý tài khoản</div>
+                        </div>
+                        <div class="inbox-user-action" id="iusera2" onclick="Logout()">
+                            <div class="inbox-user-id-image">
+                                <span class="icon-exit"
+                                      style="font-size: 30px; margin-top: 5px; color: #ffffff;"></span>
+                            </div>
+                            <div class="inbox-user-action-text" id="inbox-text1">Đăng nhập</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--end user acc-->
+
+            <a onclick="redirectHome();" id="homeButton" class="icon-metro-menu"></a>
+
+        </div>
+    </div>
+</header>
